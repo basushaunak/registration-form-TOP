@@ -1,4 +1,4 @@
-# Project Title
+# Registration Form for the Odin Project (validation API)
 
-Project Description
-coded by Enter your name / web site address
+Registration form, using validation API
+coded by Shaunak Basu / https://github.com/basushaunak
