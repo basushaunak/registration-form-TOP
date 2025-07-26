@@ -4,42 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Form for The Odin Project</title>
+    <link href="./css/styles.css" rel="stylesheet" />
+    <script src="./scripts/app.js" defer></script>
   </head>
   <body>
     <header>
       <h1>Registration Form for The Odin Project</h1>
     </header>
-    <main style="width:60%;margin-inline: auto; margin-block-start:5%;">
-      <form
-        action="/registration-data"
-        class="registration-form"
-        autocomplete="off" style="display:grid;grid-template-columns: 1fr 3fr; gap:2rem; border: 2px black solid"
-      >
-      <div class="demo-image" style="border: 2px green solid">
-        <img style="width:100%;object-fit: cover;" src="./assets/images/demo-image.jpg">
+    <main>
+      <div class="demo-image">
+        <img src="./assets/images/demo-image.jpg" />
       </div>
-      <div class="form-data" style="border: 2px orangered solid">
-        <h2 style="text-align: center;">Register Now!</h2>
-        <fieldset id="name">
-          <legend>Enter Your Name</legend>
-          Last Name <input type="text" name="last-name" id="last-name">
-          First Name <input type="text" name="first-name" id="first-name">
-        </fieldset>
-        User Name <input type="text" name="user-name" id="user-name">
-        <fieldset id="contact">
-          <legend>Contact Details</legend>
-        email id <input type="email"  name="email" id="email">
-        Mobile: <input type="text" name="mobile" id="mobile">
-        </fieldset>
-        <fieldset id="passwords">
-          <legend>Enter Password (Twice)</legend>
-          Password <input type="password" name="password" id="password">
-          Confirm Password <input type="password" name="confirm-password" id="confirm-password">
-        </fieldset>
-        <button id="btn-register" name="btn-register">Register</button> <a id="sign-in-link" src="#">Sign In 🗝</a>
-        
-
-      </div>
+      <form action="#" class="registration-form" autocomplete="off">
+        <h2 style="text-align: center">Register Now!</h2>
+        <div class="registration-data">
+          <label for="last-name">Last Name</label>
+          <input
+            type="text"
+            name="last-name"
+            id="last-name"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <label for="first-name">First Name</label>
+          <input
+            type="text"
+            name="first-name"
+            id="first-name"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <label for="user-name">User Name</label>
+          <input
+            type="text"
+            name="user-name"
+            id="user-name"
+            minlength="6"
+            maxlength="10"
+            required
+          />
+          <label for="email">email id</label>
+          <input type="email" name="email" id="email" minlength="7" required />
+          <label for="mobile">Mobile:</label>
+          <input
+            type="text"
+            name="mobile"
+            id="mobile"
+            minlength="10"
+            maxlength="13"
+            required
+          />
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            minlength="8"
+            maxlength="20"
+            required
+          />
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            minlength="8"
+            maxlength="20"
+            required
+          />
+          <div id="action">
+            <button id="btn-register" name="btn-register">Register</button>
+            <a id="sign-in-link" href="https://www.google.co.in"
+              >Sign In <span>🗝</span></a
+            >
+          </div>
+          <div class="status-message-div"><p class="status-message"></p></div>
+        </div>
       </form>
     </main>
     <footer></footer>

@@ -1,0 +1,98 @@
+main {
+  width: 60%;
+  margin-inline: auto;
+  margin-block-start: 5%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem;
+}
+
+.demo-image {
+  border: 2px green solid;
+  display: flex;
+  align-items: center;
+}
+
+.demo-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.registration-form {
+  border: 2px black solid;
+}
+
+.registration-data {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem;
+}
+
+#action {
+  grid-column: span 4;
+  margin-top: 2rem;
+  /* margin-inline-end: 2rem;
+    margin-inline-start: auto; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 2rem;
+}
+
+#btn-register {
+  padding: 0.5rem 0.5rem;
+  font-size: 1.25rem;
+}
+
+#btn-register:hover {
+  cursor: pointer;
+}
+
+#sign-in-link span {
+  font-size: 2rem;
+}
+
+#sign-in-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+#first-name,
+#last-name,
+#user-name,
+#password,
+#confirm-password,
+#email {
+  width: 20ch;
+}
+#mobile {
+  width: 14ch;
+}
+#user-name {
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+#first-name:invalid,
+#last-name:invalid,
+#email:invalid,
+#user-name:invalid,
+#mobile:invalid,
+#password:invalid,
+#confirm-password:invalid {
+  border: 1px solid red;
+  background: lightpink;
+}
+
+.status-message-div {
+  grid-column: span 4;
+  margin-block-start: 1rem;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  background-color: rgb(240, 240, 240);
+  justify-content: center;
+  align-items: center;
+}
