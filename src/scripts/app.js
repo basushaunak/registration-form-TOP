@@ -11,6 +11,13 @@ export function runRegistration() {
   const bntRegister = document.querySelector("#btn-register");
   const signInLink = document.querySelector("#sign-in-link");
   const statusMessage = document.querySelector(".status-message");
+  const regEx = [
+    { userName: /^[A-Za-z][A-Za-z0-9-]{5,9}$/ },
+    { email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ },
+    { mobile: /^(?:\+\d{1,3})?\d{10}$/ },
+    { password: /^[\x21-\x7E]{8,20}$/ },
+  ];
+  console.log(regEx);
 
   lastName.addEventListener("focus", () => {
     showStatus(
@@ -66,37 +73,49 @@ export function runRegistration() {
       showStatus("Invalid Last Name!", statusMessage, true);
       e.preventDefault();
       return;
-    };
+    }
     if (!firstName.validity.valid) {
       showStatus("Invalid First Name!", statusMessage, true);
       e.preventDefault();
       return;
-    };
+    }
     if (!userName.validity.valid) {
-      showStatus("Invalid User Name! First letter must be a alphabet.",statusMessage,true);
+      showStatus(
+        "Invalid User Name! First letter must be a alphabet.",
+        statusMessage,
+        true,
+      );
       e.preventDefault();
       return;
-    };
-    if(!email.validity.valid){
-      showStatus("Invalid email ID.",statusMessage,true);
+    }
+    if (!email.validity.valid) {
+      showStatus("Invalid email ID.", statusMessage, true);
       e.preventDefault();
       return;
-    };
-    if(!mobile.validity.valid){
-      showStatus("Invalid mobile number.",statusMessage,true);
+    }
+    if (!mobile.validity.valid) {
+      showStatus("Invalid mobile number.", statusMessage, true);
       e.preventDefault();
       return;
-    };
-    if(!password.validity.valid){
-      showStatus("Invalid password (must be 8 to 20 characters).",statusMessage,true);
+    }
+    if (!password.validity.valid) {
+      showStatus(
+        "Invalid password (must be 8 to 20 characters).",
+        statusMessage,
+        true,
+      );
       e.preventDefault();
       return;
-    };
-    if(password.value !== confirmPassword.value){
-      showStatus("Password & Confirmation Password don't match.",statusMessage,true);
+    }
+    if (password.value !== confirmPassword.value) {
+      showStatus(
+        "Password & Confirmation Password don't match.",
+        statusMessage,
+        true,
+      );
       e.preventDefault();
       return;
-    };
+    }
   });
   signInLink.addEventListener("click", () => {});
 }
