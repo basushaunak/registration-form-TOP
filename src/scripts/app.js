@@ -1,6 +1,6 @@
-// import { showStatus } from "./show-status.js";
+import { showStatus } from "./utils.js";
 
-function runRegistration() {
+export function runRegistration() {
   const lastName = document.querySelector("#last-name");
   const firstName = document.querySelector("#first-name");
   const userName = document.querySelector("#user-name");
@@ -66,33 +66,34 @@ function runRegistration() {
       showStatus("Invalid Last Name!", statusMessage, true);
       e.preventDefault();
       return;
-    }
+    };
     if (!firstName.validity.valid) {
       showStatus("Invalid First Name!", statusMessage, true);
       e.preventDefault();
       return;
-    }
+    };
     if (!userName.validity.valid) {
-      showStatus("Invalid User Name! First letter must be a alphabet.");
+      showStatus("Invalid User Name! First letter must be a alphabet.",statusMessage,true);
       e.preventDefault();
       return;
-    }
+    };
+    if(!mobile.validity.valid){
+      showStatus("Invalid mobile number.",statusMessage,true);
+      e.preventDefault();
+      return;
+    };
+    if(!password.validity.valid){
+      showStatus("Invalid password (must be 8 to 20 characters).",statusMessage,true);
+      e.preventDefault();
+      return;
+    };
+    if(password.value !== confirmPassword.value){
+      showStatus("Password & Confirmation Password don't match.",statusMessage,true);
+      e.preventDefault();
+      return;
+    };
   });
   signInLink.addEventListener("click", () => {});
 }
 
-function showStatus(message = "", element = "", errorMessage = false) {
-  console.log(element);
-  if (element) {
-    if (errorMessage) {
-      element.style.color = "red";
-    } else {
-      element.style.color = "black";
-    }
-    element.innerText = message;
-  } else {
-    console.log(errorMessage ? "Error: " : "" + message);
-  }
-}
-
-window.onload = runRegistration();
+// window.onload = runRegistration();
