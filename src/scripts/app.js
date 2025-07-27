@@ -77,6 +77,11 @@ export function runRegistration() {
       e.preventDefault();
       return;
     };
+    if(!email.validity.valid){
+      showStatus("Invalid email ID.",statusMessage,true);
+      e.preventDefault();
+      return;
+    };
     if(!mobile.validity.valid){
       showStatus("Invalid mobile number.",statusMessage,true);
       e.preventDefault();
