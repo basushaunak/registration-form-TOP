@@ -11,14 +11,12 @@ export function runRegistration() {
   const bntRegister = document.querySelector("#btn-register");
   const signInLink = document.querySelector("#sign-in-link");
   const statusMessage = document.querySelector(".status-message");
-  const regEx = [
-    { userName: /^[A-Za-z][A-Za-z0-9-]{5,9}$/ },
-    { email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ },
-    { mobile: /^(?:\+\d{1,3})?\d{10}$/ },
-    { password: /^[\x21-\x7E]{8,20}$/ },
-  ];
-  console.log(regEx);
-
+  const regExpressions = {
+    userName: /^[a-z][a-z0-9-]{5,9}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    mobile: /^(?:\+\d{1,3})?\d{10}$/,
+    password: /^[\x21-\x7E]{8,20}$/,
+  };
   lastName.addEventListener("focus", () => {
     showStatus(
       "Please enter your last name (max 30 letters incl spaces)",
@@ -69,34 +67,37 @@ export function runRegistration() {
     );
   });
   bntRegister.addEventListener("click", (e) => {
+    if (!validInput()) {
+      e.preventDefault();
+    }
+  });
+  signInLink.addEventListener("click", () => {});
+
+  function validInput() {
+    // Basic validations based on html constraints
     if (!lastName.validity.valid) {
       showStatus("Invalid Last Name!", statusMessage, true);
-      e.preventDefault();
-      return;
+      return false;
     }
     if (!firstName.validity.valid) {
       showStatus("Invalid First Name!", statusMessage, true);
-      e.preventDefault();
-      return;
+      return false;
     }
     if (!userName.validity.valid) {
       showStatus(
-        "Invalid User Name! First letter must be a alphabet.",
+        "Invalid User Name! First letter must be a alphabet.Only a-z,0-9",
         statusMessage,
         true,
       );
-      e.preventDefault();
-      return;
+      return false;
     }
     if (!email.validity.valid) {
       showStatus("Invalid email ID.", statusMessage, true);
-      e.preventDefault();
-      return;
+      return false;
     }
     if (!mobile.validity.valid) {
       showStatus("Invalid mobile number.", statusMessage, true);
-      e.preventDefault();
-      return;
+      return false;
     }
     if (!password.validity.valid) {
       showStatus(
@@ -104,8 +105,7 @@ export function runRegistration() {
         statusMessage,
         true,
       );
-      e.preventDefault();
-      return;
+      return false;
     }
     if (password.value !== confirmPassword.value) {
       showStatus(
@@ -113,11 +113,31 @@ export function runRegistration() {
         statusMessage,
         true,
       );
-      e.preventDefault();
-      return;
+      return false;
     }
-  });
-  signInLink.addEventListener("click", () => {});
+    // Validation based on regular expressions
+    if (!regExpressions["userName"].test(userName.value)) {
+      showStatus(
+        "Invalid Username, must begin with a letter, no uppercase",
+        statusMessage,
+        true,
+      );
+      return false;
+    }
+    if (!regExpressions["email"].test(email.value)) {
+      showStatus("Invalid email ID", statusMessage, true);
+      return false;
+    }
+    if (!regExpressions["password"].test(password.value)) {
+      showStatus("Invalid password", statusMessage, true);
+      return false;
+    }
+    if (!regExpressions["mobile"].test(mobile.value)) {
+      showStatus("Invalid Username", statusMessage, true);
+      return false;
+    }
+    return true;
+  }
 }
 
 // window.onload = runRegistration();
